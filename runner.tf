@@ -1,5 +1,5 @@
 resource "aws_efs_file_system" "runner" {
-  count = local.runner_config != "" ? 1 : 0
+  count = 1
 
   encrypted  = true
   kms_key_id = var.kms_key_id
@@ -10,7 +10,7 @@ resource "aws_efs_file_system" "runner" {
 }
 
 resource "aws_efs_access_point" "runner" {
-  count = local.runner_config != "" ? 1 : 0
+  count = 1
 
   file_system_id = aws_efs_file_system.runner[0].id
 }
