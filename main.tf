@@ -259,8 +259,6 @@ resource "aws_iam_role_policy_attachment" "task_exec" {
 }
 
 resource "aws_ecs_task_definition" "delegate" {
-  count = local.runner_config != "" ? 0 : 1
-
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   family                   = "harness-ng-delegate"
@@ -308,8 +306,6 @@ resource "aws_ecs_task_definition" "delegate" {
 }
 
 resource "aws_ecs_task_definition" "delegate-runner" {
-  count = local.runner_config != "" ? 1 : 0
-
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   family                   = "harness-ng-delegate-runner"
