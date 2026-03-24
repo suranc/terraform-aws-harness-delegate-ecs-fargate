@@ -16,7 +16,7 @@ resource "aws_efs_access_point" "runner" {
 }
 
 resource "aws_efs_mount_target" "runner" {
-  count = local.runner_config != "" ? length(var.subnets) : 0
+  count = length(var.subnets)
 
   file_system_id = aws_efs_file_system.runner[0].id
   subnet_id      = var.subnets[count.index]
